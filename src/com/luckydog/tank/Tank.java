@@ -7,6 +7,8 @@ public class Tank {
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 5;
 
+    private TankFrame tf;
+
     public boolean isMoving() {
         return isMoving;
     }
@@ -25,15 +27,19 @@ public class Tank {
         this.dir = dir;
     }
 
-    public Tank(int x, int y, Dir dir) {
+    public Tank(int x, int y, Dir dir, TankFrame tf) {
         super();
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.tf = tf;
     }
 
     public void paint(Graphics g) {
+        Color c = g.getColor();
+        g.setColor(Color.YELLOW);
         g.fillRect(x, y, 50, 50);
+        g.setColor(c);
         move();
     }
 
@@ -55,5 +61,9 @@ public class Tank {
             default:
                 break;
         }
+    }
+
+    public void fire() {
+        tf.bullet = new Bullet(this.x, this.y, dir);
     }
 }
