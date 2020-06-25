@@ -2,43 +2,29 @@ package com.luckydog.tank;
 
 import java.awt.*;
 
-public class Tank {
+public class Bullet {
+    private static final int SPEED = 1;
+    public static final int WIDTH = 30;
+    public static final int HEIGHT = 30;
+
     private int x, y;
-    private Dir dir = Dir.DOWN;
-    private static final int SPEED = 5;
+    private Dir dir;
 
-    public boolean isMoving() {
-        return isMoving;
-    }
-
-    public void setMoving(boolean moving) {
-        isMoving = moving;
-    }
-
-    private boolean isMoving = false;
-
-    public Dir getDir() {
-        return dir;
-    }
-
-    public void setDir(Dir dir) {
-        this.dir = dir;
-    }
-
-    public Tank(int x, int y, Dir dir) {
-        super();
+    public Bullet(int x, int y, Dir dir) {
         this.x = x;
         this.y = y;
         this.dir = dir;
     }
 
     public void paint(Graphics g) {
-        g.fillRect(x, y, 50, 50);
+        Color c = g.getColor();
+        g.setColor(Color.RED);
+        g.fillOval(x, y, WIDTH, HEIGHT);
+        g.setColor(c);
         move();
     }
 
     private void move() {
-        if (!isMoving) return;
         switch (dir) {
             case LEFT:
                 x -= SPEED;
@@ -56,4 +42,5 @@ public class Tank {
                 break;
         }
     }
+
 }
