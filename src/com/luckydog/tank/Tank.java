@@ -7,6 +7,16 @@ public class Tank {
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 10;
 
+    public boolean isMoving() {
+        return isMoving;
+    }
+
+    public void setMoving(boolean moving) {
+        isMoving = moving;
+    }
+
+    private boolean isMoving = false;
+
     public Dir getDir() {
         return dir;
     }
@@ -24,6 +34,11 @@ public class Tank {
 
     public void paint(Graphics g) {
         g.fillRect(x, y, 50, 50);
+        move();
+    }
+
+    private void move() {
+        if (!isMoving) return;
         switch (dir) {
             case LEFT:
                 x -= SPEED;
